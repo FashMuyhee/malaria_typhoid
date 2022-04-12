@@ -44,6 +44,7 @@ const Register = ({navigation}) => {
               })
               .catch((e) => {
                 setLoading(false);
+                console.log('update');
                 console.log(e.message);
               });
           }
@@ -106,7 +107,7 @@ const Register = ({navigation}) => {
         />
 
         <Button
-          onPress={() => navigation.navigate('welcome')}
+          onPress={handleSignUp}
           loading={loading}
           disabled={loading}
           title="Register"

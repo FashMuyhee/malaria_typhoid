@@ -87,7 +87,7 @@ const Login = ({navigation}) => {
         />
       </View>
       <Button
-        onPress={() => navigation.navigate('register')}
+        onPress={handleSignIn}
         loading={loading}
         disabled={loading}
         title="Login"

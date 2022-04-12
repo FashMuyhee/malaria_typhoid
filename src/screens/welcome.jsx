@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
 import {Text, useTheme} from 'react-native-paper';
 import {Container, Button} from '../components';
+import {UserContext} from '../context/UserContext';
 
 const Welcome = ({navigation}) => {
   const {colors} = useTheme();
+  const {user} = useContext(UserContext);
 
   return (
     <Container>
@@ -16,7 +18,7 @@ const Welcome = ({navigation}) => {
             fontFamily: 'Raleway-Bold',
             color: colors.primary,
           }}>
-          Welcome Jane to
+          Welcome {user?.displayName}
         </Text>
         <Text
           style={{
@@ -27,7 +29,7 @@ const Welcome = ({navigation}) => {
             alignSelf: 'center',
             color: colors.primary,
           }}>
-          Malaria-Typhoid Analysis App
+          to Malaria-Typhoid Analysis App
         </Text>
         <Text
           style={{textAlign: 'center', marginTop: 10, color: colors.primary}}>
@@ -36,7 +38,11 @@ const Welcome = ({navigation}) => {
       </View>
 
       <View style={{marginTop: 40}}>
-        <Button title="Malaria" styles={{marginBottom: 20}} />
+        <Button
+          title="Malaria"
+          styles={{marginBottom: 20}}
+          onPress={() => navigation.navigate('malaria_test')}
+        />
         <Button title="Typhoid" mode="outlined" />
       </View>
     </Container>
