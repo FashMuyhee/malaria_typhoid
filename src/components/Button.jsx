@@ -14,8 +14,7 @@ const Button = ({
   return (
     <RNPButton
       onPress={onPress}
-      loading={loading}
-      disabled={disabled}
+      disabled={disabled || loading}
       mode={mode}
       color={mode === 'contained' ? colors.primary : 'white'}
       labelStyle={{
@@ -36,7 +35,7 @@ const Button = ({
           borderWidth: mode === 'outlined' ? 2 : 0,
         },
       ]}>
-      {title}
+      {loading ? 'Loading..' : title}
     </RNPButton>
   );
 };
