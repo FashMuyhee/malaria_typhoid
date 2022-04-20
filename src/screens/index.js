@@ -1,7 +1,6 @@
-import Dashboard from './dashboard';
 import Login from './login';
 import Register from './register';
 import MalariaTest from './malaria-test';
 import Welcome from './welcome';
 
-export {Welcome, Login, Register, MalariaTest as RunTest, Dashboard};
+export {Welcome, Login, Register, MalariaTest};

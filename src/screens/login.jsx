@@ -60,8 +60,7 @@ const Login = ({navigation}) => {
           Welcome Back
         </Text>
         <Text style={{fontSize: 12, marginTop: 10}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut
+          Login with your credentials
         </Text>
       </View>
       <View style={styles.form}>
