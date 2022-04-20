@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, ImageBackground, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import PropTypes from 'prop-types';
-import bg from '../assets/images/container_bg.png';
 
 const Container = ({children, style}) => {
   const myStyle = {...styles.container, ...style};
