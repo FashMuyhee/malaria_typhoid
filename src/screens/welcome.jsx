@@ -40,7 +40,7 @@ const Welcome = ({navigation}) => {
               fontSize: 18,
               lineHeight: 30,
             }}>
-            Hi 👋 {user?.displayName}, Welcome to Malaria - Typhoid Analysis
+            Hi 👋 {user?.displayName?.split(' ') [0]}, Welcome to Malaria - Typhoid Analysis
           </Text>
         </View>
       </View>
@@ -63,9 +63,14 @@ const Welcome = ({navigation}) => {
         <Button
           title="Malaria"
           styles={{width: '47%'}}
-          onPress={() => navigation.navigate('malaria_test')}
+          onPress={() => navigation.navigate('run_test', {type: 'malaria'})}
         />
-        <Button styles={{width: '47%'}} title="Typhoid" mode="outlined" />
+        <Button
+          styles={{width: '47%'}}
+          title="Typhoid"
+          mode="outlined"
+          onPress={() => navigation.navigate('run_test', {type: 'typhoid'})}
+        />
       </View>
       <Pressable
         onPress={handleLogout}

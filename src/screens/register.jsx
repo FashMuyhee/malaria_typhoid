@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {StyleSheet, StatusBar, View} from 'react-native';
+import {StyleSheet, View, ToastAndroid} from 'react-native';
 import {Container, Button, TextInput} from '../components';
 import {Text, TextInput as RNPInput, useTheme} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import validateEmail from '../helper/validateEmail';
+import {validateEmail} from '../helper/validateEmail';
 import auth from '@react-native-firebase/auth';
 
 const Register = ({navigation}) => {
@@ -17,7 +16,7 @@ const Register = ({navigation}) => {
 
   const handleSignUp = async () => {
     if (!email || !password || !fullname) {
-      // Snackbar.show({text: 'All Field are required'});
+      ToastAndroid.show('All Field are required', ToastAndroid.LONG);
       return;
     }
 
@@ -38,14 +37,11 @@ const Register = ({navigation}) => {
             auth()
               .currentUser.updateProfile(update)
               .then((res) => {
-                console.log(res);
-                // Snackbar.show({text: 'welcome'});
+                ToastAndroid.show('welcome', ToastAndroid.LONG);
                 setLoading(false);
               })
               .catch((e) => {
                 setLoading(false);
-                console.log('update');
-                console.log(e.message);
               });
           }
         } catch (e) {
@@ -53,12 +49,13 @@ const Register = ({navigation}) => {
           setLoading(false);
         }
       } else {
-        // Snackbar.show({
-        //   text: 'Password Too Short, must be at least 8 characters ',
-        // });
+        ToastAndroid.show(
+          'Password Too Short, must be at least 8 characters ',
+          ToastAndroid.LONG,
+        );
       }
     } else {
-      // Snackbar.show({text: 'Invalid Email'});
+      ToastAndroid.show('Invalid Email', ToastAndroid.LONG);
     }
   };
   return (

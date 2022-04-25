@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ToastAndroid} from 'react-native';
 import {Container, Button, TextInput} from '../components';
 import {Text, useTheme, TextInput as RNPInput} from 'react-native-paper';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import auth from '@react-native-firebase/auth';
-import validateEmail from '../helper/validateEmail';
+import {validateEmail} from '../helper/validateEmail';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -15,9 +15,7 @@ const Login = ({navigation}) => {
 
   const handleSignIn = async () => {
     if (!email || !password) {
-      // setMessage('All Field are required');
-      // Snackbar.show({text: 'All Field are required'});
-
+      ToastAndroid.show('All Field are required', ToastAndroid.LONG);
       return;
     }
 
@@ -30,21 +28,28 @@ const Login = ({navigation}) => {
             password,
           );
           if (response) {
-            // Snackbar.show({text: 'Login Successful'});
+            ToastAndroid.show('Login Successful', ToastAndroid.LONG);
             setLoading(false);
           }
         } catch (e) {
-          console.error(e.message);
+          if (e.code == 'auth/user-not-found') {
+            ToastAndroid.show('Invalid Login Details', ToastAndroid.LONG);
+          } else {
+            ToastAndroid.show(
+              'Something went wrong, try Again',
+              ToastAndroid.LONG,
+            );
+          }
           setLoading(false);
-          setMessage(e);
         }
       } else {
-        // Snackbar.show({
-        //   text: 'Password Too Short, must be at least 8 characters ',
-        // });
+        ToastAndroid.show(
+          'Password Too Short, must be at least 8 characters',
+          ToastAndroid.LONG,
+        );
       }
     } else {
-      // Snackbar.show({text: 'Invalid Email'});
+      ToastAndroid.show('Invalid Email', ToastAndroid.LONG);
     }
   };
 

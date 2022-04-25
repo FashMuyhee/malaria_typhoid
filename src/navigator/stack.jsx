@@ -3,9 +3,8 @@ import {
   createStackNavigator,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import {Login, Welcome, Register} from '../screens';
+import {Login, Welcome, Register, RunTest} from '../screens';
 import {UserContext} from '../context/UserContext';
-import MalariaTest from '../screens/malaria-test';
 import {useTheme} from 'react-native-paper';
 const Stack = createStackNavigator();
 
@@ -37,10 +36,10 @@ const StackNavigator = () => {
         <>
           <Stack.Screen name="welcome" component={Welcome} />
           <Stack.Screen
-            name="malaria_test"
-            component={MalariaTest}
+            name="run_test"
+            component={RunTest}
             options={{
-              headerTitle: 'Malaria Analysis',
+              headerTitle: 'Run Analysis',
               headerShown: true,
             }}
           />
